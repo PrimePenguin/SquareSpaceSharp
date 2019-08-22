@@ -68,7 +68,7 @@ namespace SquareSpaceSharp.Services
             }
 
             msg.Headers.Add("Accept", "application/json");
-            msg.Headers.Add("user-agent", "SquareSpace");
+            msg.Headers.Add("user-agent", "SquareSpaceSharp");
 
             return msg;
         }
@@ -121,24 +121,16 @@ namespace SquareSpaceSharp.Services
                 return;
             }
 
-            var requestIdHeader = response.Headers.FirstOrDefault(h => h.Key.Equals("X-Request-Id", StringComparison.OrdinalIgnoreCase));
-            string requestId = requestIdHeader.Value?.FirstOrDefault();
             var code = response.StatusCode;
 
             // If the error was caused by reaching the API rate limit, throw a rate limit exception.
             if ((int)code == 429 /* Too many requests */)
             {
                 string listMessage = "Exceeded 2 calls per second for api client. Reduce request rates to resume uninterrupted service.";
-                string rateLimitMessage = $"Error: {listMessage}";
-
-                // SquareSpace used to return JSON for rate limit exceptions, but then made an unannounced change and started returning HTML.
-                // This dictionary is an attempt at preserving what was previously returned.
-                var rateLimitErrors = new Dictionary<string, IEnumerable<string>>
-                {
-                    {"Error", new List<string> {listMessage}}
-                };
-
-                throw new SquareSpaceRateLimitException(code, rateLimitErrors, rateLimitMessage, rawResponse, requestId);
+                var error = JsonConvert.DeserializeObject<SquareSpaceRateLimitException>(rawResponse);
+                error.HttpStatusCode = code;
+                error.Message = listMessage;
+                throw error;
             }
 
             var contentType = response.Content.Headers.GetValues("Content-Type").FirstOrDefault();
@@ -146,125 +138,14 @@ namespace SquareSpaceSharp.Services
 
             if (contentType.StartsWithIgnoreCase("application/json") || contentType.StartsWithIgnoreCase("text/json"))
             {
-                var errors = ParseErrorJson(rawResponse);
-                string message = defaultMessage;
 
-                if (errors == null)
-                {
-                    errors = new Dictionary<string, IEnumerable<string>>
-                    {
-                            {
-                                $"{(int)code} {response.ReasonPhrase}",
-                                new[] { message }
-                            }
-                        };
-                }
-                else
-                {
-                    var firstError = errors.First();
-
-                    message = $"{firstError.Key}: {string.Join(", ", firstError.Value)}";
-                }
-
-                throw new SquareSpaceException(code, errors, message, rawResponse, requestId);
+                var error = JsonConvert.DeserializeObject<SquareSpaceException>(rawResponse);
+                error.HttpStatusCode = code;
+                throw error;
             }
             {
-                var errors = new Dictionary<string, IEnumerable<string>>
-                {
-                    {
-                        $"{(int)code} {response.ReasonPhrase}",
-                        new[] { defaultMessage }
-                    },
-                    {
-                        "NoJsonError",
-                        new[] { "Response did not return JSON, unable to parse error message (if any)." }
-                    }
-                };
-
-                throw new SquareSpaceException(code, errors, defaultMessage, rawResponse, requestId);
+                throw new SquareSpaceException(defaultMessage) { HttpStatusCode = code };
             }
-        }
-
-        /// <summary>
-        /// Parses a JSON string for square space API errors.
-        /// </summary>
-        /// <returns>Returns null if the JSON could not be parsed into an error.</returns>
-        public static Dictionary<string, IEnumerable<string>> ParseErrorJson(string json)
-        {
-            if (string.IsNullOrEmpty(json))
-            {
-                return null;
-            }
-
-            var errors = new Dictionary<string, IEnumerable<string>>();
-
-            try
-            {
-                var parsed = JToken.Parse(string.IsNullOrEmpty(json) ? "{}" : json);
-
-                // Errors can be any of the following:
-                // 1. { errors: "some error message"}
-                // 2. { errors: { "order" : "some error message" } }
-                // 3. { errors: { "order" : [ "some error message" ] } }
-                // 4. { error: "invalid_request", error_description:"The authorization code was not found or was already used" }
-
-                if (parsed.Any(p => p.Path == "error") && parsed.Any(p => p.Path == "error_description"))
-                {
-                    // Error is type #4
-                    var description = parsed["error_description"];
-
-                    errors.Add("invalid_request", new List<string> { description.Value<string>() });
-                }
-                else if (parsed.Any(x => x.Path == "errors"))
-                {
-                    var parsedErrors = parsed["errors"];
-
-                    //errors can be either a single string, or an array of other errors
-                    if (parsedErrors.Type == JTokenType.String)
-                    {
-                        //errors is type #1
-
-                        errors.Add("Error", new List<string> { parsedErrors.Value<string>() });
-                    }
-                    else
-                    {
-                        //errors is type #2 or #3
-
-                        foreach (var val in parsedErrors.Values())
-                        {
-                            string name = val.Path.Split('.').Last();
-                            var list = new List<string>();
-
-                            if (val.Type == JTokenType.String)
-                            {
-                                list.Add(val.Value<string>());
-                            }
-                            else if (val.Type == JTokenType.Array)
-                            {
-                                list = val.Values<string>().ToList();
-                            }
-
-                            errors.Add(name, list);
-                        }
-                    }
-                }
-                else
-                {
-                    return null;
-                }
-            }
-            catch (Exception e)
-            {
-                errors.Add(e.Message, new List<string> { json });
-            }
-
-            // KVPs are structs and can never be null. Instead, check if the first error equals the default kvp value.
-            if (errors.FirstOrDefault().Equals(default(KeyValuePair<string, IEnumerable<string>>)))
-            {
-                return null;
-            }
-
-            return errors;
         }
     }
 }

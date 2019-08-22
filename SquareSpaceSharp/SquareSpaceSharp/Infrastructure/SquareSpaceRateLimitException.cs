@@ -11,8 +11,8 @@ namespace SquareSpaceSharp.Infrastructure
         public SquareSpaceRateLimitException()
         { }
 
-        public SquareSpaceRateLimitException(string message): base(message) { }
+        public SquareSpaceRateLimitException(string message) : base(message) { }
 
-        public SquareSpaceRateLimitException(HttpStatusCode httpStatusCode, Dictionary<string, IEnumerable<string>> errors, string message, string jsonError, string requestId) : base(httpStatusCode, errors, message, jsonError, requestId) { }
+        public SquareSpaceRateLimitException(HttpStatusCode httpStatusCode, string type, string subType, string message, string details) : base(httpStatusCode, type, subType, message, details) { }
     }
 }

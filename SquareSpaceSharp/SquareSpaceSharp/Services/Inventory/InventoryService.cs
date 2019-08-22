@@ -34,7 +34,7 @@ namespace SquareSpaceSharp.Services.Inventory
         /// </summary>
         /// <param name="variantsIds">A comma-separated list of variant ids. Specifies the inventory items to retrieve by variant id.</param>
         /// <returns>The <see cref="Order"/>.</returns>
-        public virtual async Task<List<Entities.Inventory>> GetInventoryAsync(string variantsIds)
+        public virtual async Task<List<Entities.Inventory>> GetInventoryByVariantIdsAsync(string variantsIds)
         {
             var req = PrepareRequest($"inventory/{variantsIds}");
 

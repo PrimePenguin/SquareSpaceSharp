@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net;
 
 namespace SquareSpaceSharp.Infrastructure
@@ -9,30 +8,36 @@ namespace SquareSpaceSharp.Infrastructure
         public HttpStatusCode HttpStatusCode { get; set; }
 
         /// <summary>
-        /// The XRequestId header returned by Wix. Can be used when working with the Wix support team to identify the failed request.
+        /// The type and subtype fields are general purpose descriptors of the kind of error that occurred. The possible values of each are documented per endpoint.
         /// </summary>
-        public string RequestId { get; set; }
-
-        /// <remarks>
-        /// Dictionary is always initialized to ensure null reference errors won't be thrown when trying to check error messages.
-        /// </remarks>
-        public Dictionary<string, IEnumerable<string>> Errors { get; set; } = new Dictionary<string, IEnumerable<string>>();
+        public string Type { get; set; }
 
         /// <summary>
-        /// The raw JSON string returned by Wix.
+        /// The type and subtype fields are general purpose descriptors of the kind of error that occurred. The possible values of each are documented per endpoint.
         /// </summary>
-        public string RawBody { get; set; }
+        public string SubType { get; set; }
+
+        /// <summary>
+        /// The message field is intended for you, the developer, and shouldn't be displayed to an end-user or client. The message field will typically contain detailed debug information.
+        /// </summary>
+        public string Message { get; set; }
+
+        /// <summary>
+        /// The details field is intended for machine-readable usage in generating user-friendly error messages for you and your users. Note that this field will be null unless otherwise specified.
+        /// </summary>
+        public string Details { get; set; }
 
         public SquareSpaceException() { }
 
         public SquareSpaceException(string message) : base(message) { }
 
-        public SquareSpaceException(HttpStatusCode httpStatusCode, Dictionary<string, IEnumerable<string>> errors, string message, string rawBody, string requestId) : base(message)
+        public SquareSpaceException(HttpStatusCode httpStatusCode, string type, string subType, string message, string details) : base(message)
         {
             HttpStatusCode = httpStatusCode;
-            Errors = errors;
-            RawBody = rawBody;
-            RequestId = requestId;
+            Type = type;
+            SubType = subType;
+            Message = message;
+            Details = details;
         }
     }
 }
