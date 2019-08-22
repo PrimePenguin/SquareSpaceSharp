@@ -37,9 +37,4 @@ namespace SquareSpaceSharp.Entities
         [JsonProperty("quantity")]
         public int Quantity { get; set; }
     }
-
-    public class RootObject
-    {
-        [JsonProperty("result")] public List<Inventory> Inventory { get; set; }
-    }
 }

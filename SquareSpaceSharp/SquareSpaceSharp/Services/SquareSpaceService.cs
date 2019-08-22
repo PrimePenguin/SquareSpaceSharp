@@ -47,32 +47,12 @@ namespace SquareSpaceSharp.Services
         /// <returns>The shop's API <see cref="Uri"/>.</returns>
         public static Uri BuildSquareSpaceApiUri()
         {
-            var squareSpaceApiUrl = "api.squarespace.com";  
-            if (Uri.IsWellFormedUriString(squareSpaceApiUrl, UriKind.Absolute) == false)
-            {
-                squareSpaceApiUrl = "https://" + squareSpaceApiUrl;
-            }
-
-            var builder = new UriBuilder(squareSpaceApiUrl)
-            {
-                Scheme = "https:",
-                Port = 443, //SSL port
-                Path = ""
-            };
-
-            return builder.Uri;
+            return new Uri("https://api.squarespace.com");
         }
 
         protected RequestUri PrepareRequest(string path)
         {
-            var ub = new UriBuilder(_ShopUri)
-            {
-                Scheme = "https:",
-                Port = 443,
-                Path = $"1.0/commerce/{path}"
-            };
-
-            return new RequestUri(ub.Uri);
+            return new RequestUri(new Uri($"https://api.squarespace.com/1.0/commerce/{path}"));
         }
 
         /// <summary>
@@ -88,6 +68,7 @@ namespace SquareSpaceSharp.Services
             }
 
             msg.Headers.Add("Accept", "application/json");
+            msg.Headers.Add("user-agent", "SquareSpace");
 
             return msg;
         }
@@ -150,7 +131,7 @@ namespace SquareSpaceSharp.Services
                 string listMessage = "Exceeded 2 calls per second for api client. Reduce request rates to resume uninterrupted service.";
                 string rateLimitMessage = $"Error: {listMessage}";
 
-                // SquareSpace used to return JSON for rate limit exceptions, but then made an unannounced change and started returning HTML. 
+                // SquareSpace used to return JSON for rate limit exceptions, but then made an unannounced change and started returning HTML.
                 // This dictionary is an attempt at preserving what was previously returned.
                 var rateLimitErrors = new Dictionary<string, IEnumerable<string>>
                 {

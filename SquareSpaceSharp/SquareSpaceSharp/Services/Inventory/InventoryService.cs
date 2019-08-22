@@ -21,9 +21,10 @@ namespace SquareSpaceSharp.Services.Inventory
         /// Returns collection of orders
         /// </summary>
         /// <param name="cursor">optional Type: A string token, returned from the pagination.nextPageCursor of a previous response.Identifies where the next page of results should begin.If this parameter is not present or empty, the first page of inventory data will be returned.</param>
-        public virtual async Task<InventoryCollection> GetInventoriesAsync(string cursor)
+        public virtual async Task<InventoryCollection> GetInventoriesAsync(string cursor = null)
         {
-            var req = PrepareRequest($"inventory?cursor={cursor}");
+            var queryParam = string.IsNullOrEmpty(cursor) ? "" : $"?cursor={cursor}";
+            var req = PrepareRequest($"inventory{queryParam}");
 
             return await ExecuteRequestAsync<InventoryCollection>(req, HttpMethod.Get);
         }
