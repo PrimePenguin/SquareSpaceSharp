@@ -5,8 +5,16 @@ namespace SquareSpaceSharp.Entities
 {
     public class OrderCollection
     {
-        [JsonProperty("result")] public IEnumerable<Order> Orders { get; set; }
+        /// <summary>
+        /// An array of order resource objects, which will be empty if the store doesn't have any orders yet.
+        /// </summary>
+        [JsonProperty("result")]
+        public IEnumerable<Order> Orders { get; set; }
 
-        [JsonProperty("pagination")] public Pagination Pagination { get; set; }
+        /// <summary>
+        /// An object containing the following fields:
+        /// </summary>
+        [JsonProperty("pagination")]
+        public Pagination Pagination { get; set; }
     }
 }

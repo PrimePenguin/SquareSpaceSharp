@@ -6,46 +6,130 @@ namespace SquareSpaceSharp.Entities
 {
     public class Order
     {
-        [JsonProperty("id")] public string Id { get; set; }
+        /// <summary>
+        /// The order's system identifier
+        /// </summary>
+        [JsonProperty("id")]
+        public string Id { get; set; }
 
-        [JsonProperty("orderNumber")] public string OrderNumber { get; set; }
+        /// <summary>
+        /// The unique, sequential number of this order.
+        /// </summary>
+        [JsonProperty("orderNumber")]
+        public string OrderNumber { get; set; }
 
-        [JsonProperty("createdOn")] public DateTime CreatedOn { get; set; }
+        /// <summary>
+        /// The ISO 8601 date and time representation of when this order was created.
+        /// </summary>
+        [JsonProperty("createdOn")]
+        public DateTime CreatedOn { get; set; }
 
-        [JsonProperty("modifiedOn")] public DateTime ModifiedOn { get; set; }
+        /// <summary>
+        /// The ISO 8601 date and time representation of when this order was last modified
+        /// </summary>
+        [JsonProperty("modifiedOn")]
+        public DateTime ModifiedOn { get; set; }
 
-        [JsonProperty("testmode")] public bool TestMode { get; set; }
+        /// <summary>
+        /// If true, this order is a test order, created using a payment method in test mode
+        /// </summary>
+        [JsonProperty("testmode")]
+        public bool TestMode { get; set; }
 
-        [JsonProperty("customerEmail")] public string CustomerEmail { get; set; }
+        /// <summary>
+        /// The email address entered at checkout or, for recurring subscription orders, is the customer's current email address
+        /// </summary>
+        [JsonProperty("customerEmail")]
+        public string CustomerEmail { get; set; }
 
-        [JsonProperty("billingAddress")] public BillingAddress BillingAddress { get; set; }
+        /// <summary>
+        /// The customer’s billing address.
+        /// </summary>
+        [JsonProperty("billingAddress")]
+        public BillingAddress BillingAddress { get; set; }
 
-        [JsonProperty("shippingAddress")] public ShippingAddress ShippingAddress { get; set; }
+        /// <summary>
+        /// The customer’s shipping address
+        /// </summary>
+        [JsonProperty("shippingAddress")]
+        public ShippingAddress ShippingAddress { get; set; }
 
-        [JsonProperty("fulfillmentStatus")] public string FulfillmentStatus { get; set; }
+        /// <summary>
+        /// The current status of the order in the fulfillment workflow. Possible values are: PENDING, FULFILLED, and CANCELED.
+        /// </summary>
+        [JsonProperty("fulfillmentStatus")]
+        public string FulfillmentStatus { get; set; }
 
-        [JsonProperty("lineItems")] public List<LineItem> LineItems { get; set; }
+        /// <summary>
+        /// An array of line item objects that describe what was purchased and how many were purchased, including requested customizations where applicable.
+        /// </summary>
+        [JsonProperty("lineItems")]
+        public List<LineItem> LineItems { get; set; }
 
-        [JsonProperty("internalNotes")] public List<InternalNote> InternalNotes { get; set; }
+        /// <summary>
+        /// An array of internal order note objects. Attributes
+        /// </summary>
+        [JsonProperty("internalNotes")]
+        public List<InternalNote> InternalNotes { get; set; }
 
-        [JsonProperty("shippingLines")] public List<ShippingLine> ShippingLines { get; set; }
+        /// <summary>
+        /// An array of objects detailing chosen shipping options, such as method and cost.
+        /// </summary>
+        [JsonProperty("shippingLines")]
+        public List<ShippingLine> ShippingLines { get; set; }
 
-        [JsonProperty("discountLines")] public List<DiscountLine> DiscountLines { get; set; }
+        /// <summary>
+        /// An array of objects detailing discounts the shopper applied to their order at checkout.
+        /// </summary>
+        [JsonProperty("discountLines")]
+        public List<DiscountLine> DiscountLines { get; set; }
 
-        [JsonProperty("formSubmission")] public List<FormSubmission> FormSubmission { get; set; }
+        /// <summary>
+        /// An array of objects detailing questions and answers the shopper provided at checkout, if they were presented with a form.
+        /// </summary>
+        [JsonProperty("formSubmission")]
+        public List<FormSubmission> FormSubmission { get; set; }
 
-        [JsonProperty("fulfillments")] public List<Fulfillment> Fulfillments { get; set; }
+        /// <summary>
+        /// An array of fulfillment objects detailing shipment information for all shipments associated with the order.
+        /// </summary>
+        [JsonProperty("fulfillments")]
+        public List<Fulfillment> Fulfillments { get; set; }
 
-        [JsonProperty("subtotal")] public Subtotal Subtotal { get; set; }
+        /// <summary>
+        /// Sub total
+        /// </summary>
+        [JsonProperty("subtotal")]
+        public Subtotal Subtotal { get; set; }
 
-        [JsonProperty("shippingTotal")] public ShippingTotal ShippingTotal { get; set; }
+        /// <summary>
+        ///  Shipping total
+        /// </summary>
+        [JsonProperty("shippingTotal")]
+        public ShippingTotal ShippingTotal { get; set; }
 
-        [JsonProperty("discountTotal")] public DiscountTotal DiscountTotal { get; set; }
+        /// <summary>
+        /// Discount total
+        /// </summary>
+        [JsonProperty("discountTotal")]
+        public DiscountTotal DiscountTotal { get; set; }
 
-        [JsonProperty("taxTotal")] public TaxTotal TaxTotal { get; set; }
+        /// <summary>
+        /// Total tax
+        /// </summary>
+        [JsonProperty("taxTotal")]
+        public TaxTotal TaxTotal { get; set; }
 
-        [JsonProperty("refundedTotal")] public RefundedTotal RefundedTotal { get; set; }
+        /// <summary>
+        /// Total Refund
+        /// </summary>
+        [JsonProperty("refundedTotal")]
+        public RefundedTotal RefundedTotal { get; set; }
 
-        [JsonProperty("grandTotal")] public GrandTotal GrandTotal { get; set; }
+        /// <summary>
+        /// Grand Total
+        /// </summary>
+        [JsonProperty("grandTotal")]
+        public GrandTotal GrandTotal { get; set; }
     }
 }

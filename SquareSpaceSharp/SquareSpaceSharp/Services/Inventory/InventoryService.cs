@@ -29,11 +29,11 @@ namespace SquareSpaceSharp.Services.Inventory
         }
 
         /// <summary>
-        /// Returns a order with provided ID.
+        /// Retrieves real-time inventory level information for specific product variants
         /// </summary>
         /// <param name="variantsIds">A comma-separated list of variant ids. Specifies the inventory items to retrieve by variant id.</param>
         /// <returns>The <see cref="Order"/>.</returns>
-        public virtual async Task<List<Entities.Inventory>> GetOrderAsync(string variantsIds)
+        public virtual async Task<List<Entities.Inventory>> GetInventoryAsync(string variantsIds)
         {
             var req = PrepareRequest($"inventory/{variantsIds}");
 
@@ -41,7 +41,7 @@ namespace SquareSpaceSharp.Services.Inventory
         }
 
         /// <summary>
-        /// Post a update stock adjustment request
+        /// Supports stock adjustment operations on specified product variants. Stock adjustments can be incremental, decremental, finite ("I have exactly n of this variant in stock"), or unlimited ("This variant has limitless stock").
         /// </summary>
         ///  /// <param name="stockAdjustmentQuery">Requested Stock adjustment query parameters</param>
         public virtual async Task UpdateStockAdjustment(StockAdjustmentQuery stockAdjustmentQuery)

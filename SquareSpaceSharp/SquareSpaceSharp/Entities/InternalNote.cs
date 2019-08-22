@@ -4,6 +4,10 @@ namespace SquareSpaceSharp.Entities
 {
     public class InternalNote
     {
-        [JsonProperty("content")] public string Content { get; set; }
+        /// <summary>
+        /// The content of the note.
+        /// </summary>
+        [JsonProperty("content")]
+        public string Content { get; set; }
     }
 }
