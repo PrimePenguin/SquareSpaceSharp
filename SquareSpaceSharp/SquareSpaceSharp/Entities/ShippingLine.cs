@@ -6,6 +6,6 @@ namespace SquareSpaceSharp.Entities
     {
         [JsonProperty("method")] public string Method { get; set; }
 
-        [JsonProperty("amount")] public Amount Amount { get; set; }
+        [JsonProperty("amount")] public CurrencyValue Amount { get; set; }
     }
 }

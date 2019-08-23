@@ -45,7 +45,7 @@ namespace SquareSpaceSharp.Entities
         /// The price the shopper paid per unit of this item.
         /// </summary>
         [JsonProperty("unitPricePaid")]
-        public UnitPricePaid UnitPricePaid { get; set; }
+        public CurrencyValue UnitPricePaid { get; set; }
 
         /// <summary>
         /// An array of objects representing variant choices made by the shopper, such as “Small, Red” for a t-shirt.
@@ -57,7 +57,7 @@ namespace SquareSpaceSharp.Entities
         /// An array of objects representing requested customizations, if supported by the item at purchase.
         /// </summary>
         [JsonProperty("customizations")]
-        public object Customizations { get; set; }
+        public List<FormSubmission> Customizations { get; set; }
 
         /// <summary>
         /// The URL to the primary image for this line item.

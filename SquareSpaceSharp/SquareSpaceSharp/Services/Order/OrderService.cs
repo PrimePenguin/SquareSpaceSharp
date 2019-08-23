@@ -20,10 +20,14 @@ namespace SquareSpaceSharp.Services.Order
         /// Returns collection of orders
         /// </summary>
         /// <param name="queryParameters">Order query parameters</param>
-        public virtual async Task<OrderCollection> GetOrdersAsync(OrderQueryParameters queryParameters)
+        public virtual async Task<OrderCollection> GetOrdersAsync(OrderQueryParameters queryParameters = null)
         {
-            var req = PrepareRequest(
-                $"orders?modifiedAfter={queryParameters.ModifiedAfter}&modifiedBefore={queryParameters.ModifiedBefore}&cursor={queryParameters.Cursor}&fulfillmentStatus={queryParameters.FulfillmentStatus}");
+            var req = PrepareRequest("orders");
+
+            if (queryParameters != null)
+            {
+                req.QueryParams.AddRange(queryParameters.ToParameters());
+            }
 
             return await ExecuteRequestAsync<OrderCollection>(req, HttpMethod.Get);
         }

@@ -2,7 +2,7 @@
 
 namespace SquareSpaceSharp.Entities
 {
-    public class ShippingAddress
+    public class Address
     {
         [JsonProperty("firstName")] public string FirstName { get; set; }
 

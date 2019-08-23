@@ -1,8 +1,9 @@
 ﻿using Newtonsoft.Json;
+using SquareSpaceSharp.Infrastructure;
 
 namespace SquareSpaceSharp.Entities
 {
-    public class OrderQueryParameters
+    public class OrderQueryParameters : Parameterizable
     {
         /// <summary>
         /// Type: A string token, returned from the pagination.nextPageCursor of a previous response.Identifies where the next page of results should begin.If this parameter is not present or empty, the first page of order data will be returned.
@@ -29,13 +30,6 @@ namespace SquareSpaceSharp.Entities
         ///Used to filter orders according to their fulfillment status.
         /// </summary>
         [JsonProperty("fulfillmentStatus")]
-        public FulfillmentStatus FulfillmentStatus { get; set; }
-    }
-
-    public enum FulfillmentStatus
-    {
-        PENDING,
-        FULFILLED,
-        CANCELED
+        public string FulfillmentStatus { get; set; }
     }
 }

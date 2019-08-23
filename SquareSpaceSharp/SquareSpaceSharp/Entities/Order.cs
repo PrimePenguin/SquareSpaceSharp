@@ -22,13 +22,13 @@ namespace SquareSpaceSharp.Entities
         /// The ISO 8601 date and time representation of when this order was created.
         /// </summary>
         [JsonProperty("createdOn")]
-        public DateTime CreatedOn { get; set; }
+        public string CreatedOn { get; set; }
 
         /// <summary>
         /// The ISO 8601 date and time representation of when this order was last modified
         /// </summary>
         [JsonProperty("modifiedOn")]
-        public DateTime ModifiedOn { get; set; }
+        public string ModifiedOn { get; set; }
 
         /// <summary>
         /// If true, this order is a test order, created using a payment method in test mode
@@ -46,13 +46,13 @@ namespace SquareSpaceSharp.Entities
         /// The customer’s billing address.
         /// </summary>
         [JsonProperty("billingAddress")]
-        public BillingAddress BillingAddress { get; set; }
+        public Address BillingAddress { get; set; }
 
         /// <summary>
         /// The customer’s shipping address
         /// </summary>
         [JsonProperty("shippingAddress")]
-        public ShippingAddress ShippingAddress { get; set; }
+        public Address ShippingAddress { get; set; }
 
         /// <summary>
         /// The current status of the order in the fulfillment workflow. Possible values are: PENDING, FULFILLED, and CANCELED.
@@ -100,36 +100,36 @@ namespace SquareSpaceSharp.Entities
         /// Sub total
         /// </summary>
         [JsonProperty("subtotal")]
-        public Subtotal Subtotal { get; set; }
+        public CurrencyValue Subtotal { get; set; }
 
         /// <summary>
         ///  Shipping total
         /// </summary>
         [JsonProperty("shippingTotal")]
-        public ShippingTotal ShippingTotal { get; set; }
+        public CurrencyValue ShippingTotal { get; set; }
 
         /// <summary>
         /// Discount total
         /// </summary>
         [JsonProperty("discountTotal")]
-        public DiscountTotal DiscountTotal { get; set; }
+        public CurrencyValue DiscountTotal { get; set; }
 
         /// <summary>
         /// Total tax
         /// </summary>
         [JsonProperty("taxTotal")]
-        public TaxTotal TaxTotal { get; set; }
+        public CurrencyValue TaxTotal { get; set; }
 
         /// <summary>
         /// Total Refund
         /// </summary>
         [JsonProperty("refundedTotal")]
-        public RefundedTotal RefundedTotal { get; set; }
+        public CurrencyValue RefundedTotal { get; set; }
 
         /// <summary>
         /// Grand Total
         /// </summary>
         [JsonProperty("grandTotal")]
-        public GrandTotal GrandTotal { get; set; }
+        public CurrencyValue GrandTotal { get; set; }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace SquareSpaceSharp.Entities
 {
-    public class GrandTotal
+    public class CurrencyValue
     {
         [JsonProperty("value")] public string Value { get; set; }
 
