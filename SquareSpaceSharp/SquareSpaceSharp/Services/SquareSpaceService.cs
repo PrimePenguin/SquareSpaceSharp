@@ -138,7 +138,6 @@ namespace SquareSpaceSharp.Services
 
             if (contentType.StartsWithIgnoreCase("application/json") || contentType.StartsWithIgnoreCase("text/json"))
             {
-
                 var error = JsonConvert.DeserializeObject<SquareSpaceException>(rawResponse);
                 error.HttpStatusCode = code;
                 throw error;

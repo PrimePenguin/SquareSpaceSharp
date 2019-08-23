@@ -10,7 +10,7 @@ namespace SquareSpaceSharp.Entities
 
         [JsonProperty("address1")] public string Address1 { get; set; }
 
-        [JsonProperty("address2")] public object Address2 { get; set; }
+        [JsonProperty("address2")] public string Address2 { get; set; }
 
         [JsonProperty("city")] public string City { get; set; }
 

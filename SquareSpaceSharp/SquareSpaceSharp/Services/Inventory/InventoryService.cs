@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
 using SquareSpaceSharp.Entities;
 using SquareSpaceSharp.Extensions;
@@ -33,18 +32,18 @@ namespace SquareSpaceSharp.Services.Inventory
         /// Retrieves real-time inventory level information for specific product variants
         /// </summary>
         /// <param name="variantsIds">A comma-separated list of variant ids. Specifies the inventory items to retrieve by variant id.</param>
-        /// <returns>The <see cref="Order"/>.</returns>
-        public virtual async Task<List<Entities.Inventory>> GetInventoryByVariantIdsAsync(string variantsIds)
+        /// <returns>The <see cref="InventoryCollection"/>.</returns>
+        public virtual async Task<InventoryCollection> GetInventoryByVariantIdsAsync(string variantsIds)
         {
             var req = PrepareRequest($"inventory/{variantsIds}");
 
-            return await ExecuteRequestAsync<List<Entities.Inventory>>(req, HttpMethod.Get);
+            return await ExecuteRequestAsync<InventoryCollection>(req, HttpMethod.Get);
         }
 
         /// <summary>
         /// Supports stock adjustment operations on specified product variants. Stock adjustments can be incremental, decremental, finite ("I have exactly n of this variant in stock"), or unlimited ("This variant has limitless stock").
         /// </summary>
-        ///  /// <param name="stockAdjustmentQuery">Requested Stock adjustment query parameters</param>
+        /// <param name="stockAdjustmentQuery">Requested Stock adjustment query parameters</param>
         public virtual async Task UpdateStockAdjustment(StockAdjustmentQuery stockAdjustmentQuery)
         {
             var req = PrepareRequest($"inventory/adjustments");

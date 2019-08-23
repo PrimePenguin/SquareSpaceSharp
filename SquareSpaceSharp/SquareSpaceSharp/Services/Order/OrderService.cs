@@ -37,7 +37,7 @@ namespace SquareSpaceSharp.Services.Order
         /// </summary>
         /// <param name="orderId">Requested order ID</param>
         /// <returns>The <see cref="Order"/>.</returns>
-        public virtual async Task<Entities.Order> GetOrderAsync(string orderId)
+        public virtual async Task<Entities.Order> GetOrderByIdAsync(string orderId)
         {
             var req = PrepareRequest($"orders/{orderId}");
 

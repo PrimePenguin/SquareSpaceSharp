@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Net;
+using Newtonsoft.Json;
 
 namespace SquareSpaceSharp.Infrastructure
 {
     public class SquareSpaceException : Exception
     {
+        [JsonIgnore]
         public HttpStatusCode HttpStatusCode { get; set; }
 
         /// <summary>
@@ -26,6 +28,11 @@ namespace SquareSpaceSharp.Infrastructure
         /// The details field is intended for machine-readable usage in generating user-friendly error messages for you and your users. Note that this field will be null unless otherwise specified.
         /// </summary>
         public string Details { get; set; }
+
+        /// <summary>
+        /// The contextId field is intended for communicating a server error with Squarespace Customer Care. Please do not hesitate to report this context id along with any occurrences of 5xx-class errors.
+        /// </summary>
+        public string ContextId { get; set; }
 
         public SquareSpaceException() { }
 
