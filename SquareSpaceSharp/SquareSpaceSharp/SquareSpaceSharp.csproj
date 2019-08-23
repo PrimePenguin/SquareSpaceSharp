@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFrameworks>netcoreapp2.1;</TargetFrameworks>
-    <AssemblyName>PrimePenguin.SquareSpaceSharp</AssemblyName>
-    <RootNamespace>PrimePenguin.SquareSpaceSharp</RootNamespace>
+    <AssemblyName>SquareSpaceSharp</AssemblyName>
+    <RootNamespace>SquareSpaceSharp</RootNamespace>
     <Version>0.0.1</Version>
   </PropertyGroup>
   <PropertyGroup>
