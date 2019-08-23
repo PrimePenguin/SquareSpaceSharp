@@ -13,3 +13,4 @@ If you're using .NET Core, you can use the `dotnet` command from your favorite s
 ```
 dotnet add package SquarespaceSharp
 ```
+
