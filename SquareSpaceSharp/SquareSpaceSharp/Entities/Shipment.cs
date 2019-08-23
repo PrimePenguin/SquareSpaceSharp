@@ -1,15 +1,14 @@
 ﻿using Newtonsoft.Json;
-using System;
 
 namespace SquareSpaceSharp.Entities
 {
     public class Shipment
     {
         /// <summary>
-        /// The ISO 8601 date and time representing the moment the shipment 
+        /// The ISO 8601 date and time representing the moment the shipment
         /// </summary>
         [JsonProperty("shipDate")]
-        public DateTime ShipDate { get; set; }
+        public string ShipDate { get; set; }
 
         /// <summary>
         /// A string representing the parcel service transporting the shipment.

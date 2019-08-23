@@ -49,16 +49,16 @@ namespace SquareSpaceSharp.Services.Order
         /// Post a fulfillment of an order
         /// </summary>
         /// <param name="orderId">Requested order ID, specifies the order to update.</param>
-        ///  /// <param name="fulfillmentParameter">Requested order ID</param>
+        ///  /// <param name="orderFulfillment">Requested order ID</param>
         /// <returns>The <see cref="Order"/>.</returns>
-        public virtual async Task<Entities.Order> UpdateFulfillmentAsync(string orderId, OrderFulfillment fulfillmentParameter)
+        public virtual async Task<Entities.Order> UpdateFulfillmentAsync(string orderId, OrderFulfillment orderFulfillment)
         {
             var req = PrepareRequest($"orders/{orderId}/fulfillments");
             HttpContent content = null;
 
-            if (fulfillmentParameter != null)
+            if (orderFulfillment != null)
             {
-                var body = fulfillmentParameter.ToDictionary();
+                var body = orderFulfillment.ToDictionary();
                 content = new JsonContent(body);
             }
 
