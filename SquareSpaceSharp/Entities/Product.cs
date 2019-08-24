@@ -14,8 +14,8 @@ namespace SquareSpaceSharp.Entities
         /// <summary>
         /// The type of product represented. While Squarespace supports many product types, only physical products are exposed via the Products API at this time.
         /// </summary>
-        [JsonProperty("productType")]
-        public string ProductType { get; set; }
+        [JsonProperty("type")]
+        public string Type { get; set; }
 
         /// <summary>
         /// The full URL of the product’s sales page in the merchant’s store
