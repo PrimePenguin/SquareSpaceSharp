@@ -1,8 +1,6 @@
 ﻿using System.Net.Http;
 using System.Threading.Tasks;
 using SquareSpaceSharp.Entities;
-using SquareSpaceSharp.Extensions;
-using SquareSpaceSharp.Infrastructure;
 
 namespace SquareSpaceSharp.Services.Product
 {
@@ -38,23 +36,6 @@ namespace SquareSpaceSharp.Services.Product
             var req = PrepareRequest("0.1", $"products/{productIds}");
 
             return await ExecuteRequestAsync<ProductCollection>(req, HttpMethod.Get);
-        }
-
-        /// <summary>
-        /// Supports stock adjustment operations on specified product variants. Stock adjustments can be incremental, decremental, finite ("I have exactly n of this variant in stock"), or unlimited ("This variant has limitless stock").
-        /// </summary>
-        /// <param name="stockAdjustmentQuery">Requested Stock adjustment query parameters</param>
-        public virtual async Task UpdateStockAdjustment(StockAdjustmentQuery stockAdjustmentQuery)
-        {
-            var req = PrepareRequest($"inventory/adjustments");
-            HttpContent content = null;
-
-            if (stockAdjustmentQuery != null)
-            {
-                var body = stockAdjustmentQuery.ToDictionary();
-                content = new JsonContent(body);
-            }
-            await ExecuteRequestAsync<object>(req, HttpMethod.Post, content);
         }
     }
 }
