@@ -9,7 +9,7 @@ namespace SquareSpaceSharp.Entities
         /// An array containing up to 50 objects of products
         /// </summary>
         [JsonProperty("products")]
-        public IEnumerable<Product> Inventories { get; set; }
+        public IEnumerable<Product> Products { get; set; }
 
         /// <summary>
         /// An object containing the following fields:
