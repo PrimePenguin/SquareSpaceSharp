@@ -74,7 +74,10 @@ namespace SquareSpaceSharp.Services
 
             msg.Headers.Add("Accept", "application/json");
             msg.Headers.Add("user-agent", "SquareSpaceSharp");
-
+            if (method == HttpMethod.Post)
+            {
+                msg.Headers.Add("Idempotency-Key", _secretApiKey);
+            }
             return msg;
         }
 
