@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -92,6 +91,7 @@ namespace SquareSpaceSharp.Services
                 var policyResult = await _ExecutionPolicy.Run(baseRequestMessage, async requestMessage =>
                 {
                     var request = _Client.SendAsync(requestMessage);
+                    var result = new T();
 
                     using (var response = await request)
                     {
@@ -105,8 +105,7 @@ namespace SquareSpaceSharp.Services
                         // be using the non-generic ExecuteRequestAsync.
                         var reader = new JsonTextReader(new StringReader(rawResult));
                         var data = _Serializer.Deserialize<JObject>(reader);
-                        var result = data.ToObject<T>();
-
+                        if (data != null) result = data.ToObject<T>();
                         return new RequestResult<T>(response, result, rawResult);
                     }
                 });
