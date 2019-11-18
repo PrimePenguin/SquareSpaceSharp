@@ -51,24 +51,12 @@ namespace SquareSpaceSharp.Services
 
         protected RequestUri PrepareRequest(string path)
         {
-            var ub = new UriBuilder("https://api.squarespace.com/commerce/")
-            {
-                Scheme = "https:",
-                Port = 443,
-                Path = path
-            };
-            return new RequestUri(ub.Uri);
+            return new RequestUri(new Uri($"https://api.squarespace.com/1.0/commerce/{path}"));
         }
 
         protected RequestUri PrepareRequest(string apiVersion, string path)
         {
-            var ub = new UriBuilder($"https://api.squarespace.com/{apiVersion}/commerce/")
-            {
-                Scheme = "https:",
-                Port = 443,
-                Path = path
-            };
-            return new RequestUri(ub.Uri);
+            return new RequestUri(new Uri($"https://api.squarespace.com/{apiVersion}/commerce/{path}"));
         }
 
         /// <summary>
