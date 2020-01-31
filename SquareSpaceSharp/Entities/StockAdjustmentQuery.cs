@@ -1,25 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace SquareSpaceSharp.Entities
 {
-    public class IncrementOperation
-    {
-        [JsonProperty("variantId")] public string VariantId { get; set; }
-
-        [JsonProperty("quantity")] public int Quantity { get; set; }
-    }
-
-    public class DecrementOperation
-    {
-        [JsonProperty("variantId")] public string VariantId { get; set; }
-
-        [JsonProperty("quantity")] public int Quantity { get; set; }
-    }
-
-    public class SetFiniteOperation
+    public class StockOperation
     {
         [JsonProperty("variantId")] public string VariantId { get; set; }
 
@@ -32,19 +16,19 @@ namespace SquareSpaceSharp.Entities
         /// optional: An array of objects specifying a variant id and the amount to add to that variant's stock quantity, quantity values must be greater than or equal to 1.
         /// </summary>
         [JsonProperty("incrementOperations")]
-        public List<IncrementOperation> IncrementOperations { get; set; }
+        public List<StockOperation> IncrementOperations { get; set; }
 
         /// <summary>
         /// optional: An array of objects specifying a variant id and the amount to subtract from that variant's stock quantity, quantity values must be greater than or equal to 1.
         /// </summary>
         [JsonProperty("decrementOperations")]
-        public List<DecrementOperation> DecrementOperations { get; set; }
+        public List<StockOperation> DecrementOperations { get; set; }
 
         /// <summary>
         /// optional: An array of objects specifying a variant id and the exact quantity in stock for that variant, quantity values must be greater than or equal to 0.
         /// </summary>
         [JsonProperty("setFiniteOperations")]
-        public List<SetFiniteOperation> SetFiniteOperations { get; set; }
+        public List<StockOperation> SetFiniteOperations { get; set; }
 
         /// <summary>
         /// optional: An array of variants ids representing one or more variants that should be marked as having unlimited stock.
