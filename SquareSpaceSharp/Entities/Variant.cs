@@ -24,13 +24,6 @@ namespace SquareSpaceSharp.Entities
         public VariantPricing Pricing { get; set; }
 
         /// <summary>
-        ///  Provides information about variant’s current stock level, including whether the variant has “unlimited” stock.
-        ///  If unlimited is true, quantity’s value is no longer relevant and must be ignored.
-        /// </summary>
-        [JsonProperty("stock")]
-        public Stock Stock { get; set; }
-
-        /// <summary>
         ///  A set of custom key-value string pairs representing all of the features that make this particular product variant unique.
         /// Values are often things like color, design, and weight, but may represent any information the merchant has deemed a defining characteristic of the variant.
         /// </summary>
@@ -40,8 +33,8 @@ namespace SquareSpaceSharp.Entities
         /// <summary>
         ///  The weight and size to use when calculating shipping.The units can be imperial(INCH, POUND) or metric (CENTIMETER, KILOGRAM).
         /// </summary>
-        [JsonProperty("shippingDimensions")]
-        public ShippingDimension ShippingDimensions { get; set; }
+        [JsonProperty("shippingMeasurements")]
+        public ShippingDimension ShippingMeasurements { get; set; }
 
         /// <summary>
         /// This variant’s main image. The data contained here provides the same information and features as the product’s images attribute
