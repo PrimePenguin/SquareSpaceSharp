@@ -20,7 +20,7 @@ namespace SquareSpaceSharp.Services.Product
         /// <param name="cursor">optional Type: A string token, returned from the pagination.nextPageCursor of a previous response.Identifies where the next page of results should begin.If this parameter is not present or empty, the first page of inventory data will be returned.</param>
         public virtual async Task<ProductCollection> GetProductsAsync(string cursor = null)
         {
-            var req = PrepareRequest("0.1", "products");
+            var req = PrepareRequest("0.2", "products");
             if (!string.IsNullOrEmpty(cursor))
             {
                 req.QueryParams.Add("cursor", cursor);
@@ -36,7 +36,7 @@ namespace SquareSpaceSharp.Services.Product
         /// <returns>The <see cref="ProductCollection"/>.</returns>
         public virtual async Task<ProductCollection> GetProductsByIdsAsync(string productIds)
         {
-            var req = PrepareRequest("0.1", $"products/{productIds}");
+            var req = PrepareRequest("0.2", $"products/{productIds}");
 
             return await ExecuteRequestAsync<ProductCollection>(req, HttpMethod.Get);
         }
