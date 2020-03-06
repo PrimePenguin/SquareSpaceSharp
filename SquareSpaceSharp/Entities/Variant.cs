@@ -40,8 +40,8 @@ namespace SquareSpaceSharp.Entities
         /// <summary>
         ///  The weight and size to use when calculating shipping.The units can be imperial(INCH, POUND) or metric (CENTIMETER, KILOGRAM).
         /// </summary>
-        [JsonProperty("shippingDimensions")]
-        public ShippingDimension ShippingDimensions { get; set; }
+        [JsonProperty("shippingMeasurements")]
+        public ShippingDimension ShippingMeasurements { get; set; }
 
         /// <summary>
         /// This variant’s main image. The data contained here provides the same information and features as the product’s images attribute
