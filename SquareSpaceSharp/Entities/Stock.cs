@@ -7,7 +7,7 @@ namespace SquareSpaceSharp.Entities
         /// <summary>
         /// Indicates whether stock is currently tracked for this variant.
         /// </summary>
-        [JsonProperty("isUnlimited")]
+        [JsonProperty("unlimited")]
         public bool IsUnlimited { get; set; }
 
         /// <summary>

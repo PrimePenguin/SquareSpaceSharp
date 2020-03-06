@@ -24,6 +24,13 @@ namespace SquareSpaceSharp.Entities
         public VariantPricing Pricing { get; set; }
 
         /// <summary>
+        ///  Provides information about variant’s current stock level, including whether the variant has “unlimited” stock.
+        ///  If unlimited is true, quantity’s value is no longer relevant and must be ignored.
+        /// </summary>
+        [JsonProperty("stock")]
+        public Stock Stock { get; set; }
+
+        /// <summary>
         ///  A set of custom key-value string pairs representing all of the features that make this particular product variant unique.
         /// Values are often things like color, design, and weight, but may represent any information the merchant has deemed a defining characteristic of the variant.
         /// </summary>
