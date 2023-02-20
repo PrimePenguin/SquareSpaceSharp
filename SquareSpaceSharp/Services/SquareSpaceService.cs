@@ -59,6 +59,19 @@ namespace SquareSpaceSharp.Services
             return new RequestUri(new Uri($"https://api.squarespace.com/{apiVersion}/commerce/{path}"));
         }
 
+        protected RequestUri PrepareRequest(string path,bool isCommerce)
+        {
+            if (isCommerce) {
+                return new RequestUri(new Uri($"https://api.squarespace.com/1.0/commerce/{path}"));
+
+            }
+            else
+            {
+                return new RequestUri(new Uri($"https://api.squarespace.com/1.0/{path}"));
+
+            }
+        }
+
         /// <summary>
         /// Prepares a request to the path and appends the shop's access token header if applicable.
         /// </summary>
