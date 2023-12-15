@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace SquareSpaceSharp.Entities
@@ -16,6 +17,9 @@ namespace SquareSpaceSharp.Entities
         /// </summary>
         [JsonProperty("type")]
         public string Type { get; set; }
+
+        [JsonProperty("storePageId")]
+        public string StorePageId { get; set; }
 
         /// <summary>
         /// The full URL of the product’s sales page in the merchant’s store
@@ -35,6 +39,9 @@ namespace SquareSpaceSharp.Entities
         [JsonProperty("description")]
         public string Description { get; set; }
 
+        [JsonProperty("urlSlug")]
+        public string UrlSlug { get; set; }
+
         /// <summary>
         /// A collection of images associated with the product. Available properties include the URL of the image as hosted on Squarespace,
         /// the image’s original size, and a list of additional sizing options, which are a selection of widths less than or equal to the width of the original image.
@@ -42,6 +49,12 @@ namespace SquareSpaceSharp.Entities
         /// </summary>
         [JsonProperty("images")]
         public IEnumerable<Images> Images { get; set; }
+
+        /// <summary>
+        /// List of attributes to distinguish variants of the product.
+        /// </summary>
+        [JsonProperty("variantAttributes")]
+        public List<string> VariantAttributes { get; set; }
 
         /// <summary>
         /// An array of strings providing keywords associated with the product.
@@ -56,9 +69,19 @@ namespace SquareSpaceSharp.Entities
         public bool IsVisible { get; set; }
 
         /// <summary>
-        /// A collection of attributes detailing the product’s possible variations
+        /// List of variants of the product.
         /// </summary>
         [JsonProperty("variants")]
         public List<Variant> Variants { get; set; }
+
+        /// <summary>
+        /// ISO 8601 UTC date and time string; represents when the Product was created.
+        /// </summary>
+        public string CreatedOn { get; set; }
+
+        /// <summary>
+        /// ISO 8601 UTC date and time string; represents when the Product was last modified.
+        /// </summary>
+        public string ModifiedOn { get; set; }
     }
 }

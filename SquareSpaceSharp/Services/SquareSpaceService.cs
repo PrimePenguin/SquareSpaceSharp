@@ -54,7 +54,7 @@ namespace SquareSpaceSharp.Services
             return new RequestUri(new Uri($"https://api.squarespace.com/1.0/commerce/{path}"));
         }
 
-        protected RequestUri PrepareRequest(string apiVersion, string path)
+        protected RequestUri PrepareProductRequest(string apiVersion, string path)
         {
             return new RequestUri(new Uri($"https://api.squarespace.com/{apiVersion}/commerce/{path}"));
         }

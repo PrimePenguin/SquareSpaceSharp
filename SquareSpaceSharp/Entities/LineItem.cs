@@ -64,5 +64,20 @@ namespace SquareSpaceSharp.Entities
         /// </summary>
         [JsonProperty("imageUrl")]
         public string ImageUrl { get; set; }
+
+        [JsonProperty("lineItemType")]
+        public string LineItemType { get; set; }
+
+        [JsonProperty("weight")]
+        public double? Weight { get; set; }
+
+        [JsonProperty("width")]
+        public double? Width { get; set; }
+
+        [JsonProperty("length")]
+        public double? Length { get; set; }
+
+        [JsonProperty("height")]
+        public double? Height { get; set; }
     }
 }

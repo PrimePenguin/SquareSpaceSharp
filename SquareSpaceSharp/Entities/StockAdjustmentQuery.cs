@@ -5,8 +5,14 @@ namespace SquareSpaceSharp.Entities
 {
     public class StockOperation
     {
+        /// <summary>
+        /// Unique id for the InventoryItem.
+        /// </summary>
         [JsonProperty("variantId")] public string VariantId { get; set; }
 
+        /// <summary>
+        /// Amount to add to the current stock quantity; must be greater than or equal to 1.
+        /// </summary>
         [JsonProperty("quantity")] public int Quantity { get; set; }
     }
 

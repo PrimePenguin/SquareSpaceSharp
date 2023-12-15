@@ -17,6 +17,9 @@ namespace SquareSpaceSharp.Entities
         [JsonProperty("id")]
         public string Id { get; set; }
 
+        [JsonProperty("title")]
+        public string Title { get; set; }
+
         /// <summary>
         /// The dimensions of the image when it was first uploaded, also the dimensions of the image if requested without a format specifier
         /// </summary>

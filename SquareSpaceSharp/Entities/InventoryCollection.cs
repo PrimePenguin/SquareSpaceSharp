@@ -6,7 +6,7 @@ namespace SquareSpaceSharp.Entities
     public class InventoryCollection
     {
         /// <summary>
-        /// An array of inventory item objects, which will be empty if the store is not configured with any eligible product variants.
+        /// Array of InventoryItem resources. If the merchant site doesn't have any physical or service product variants, this array is empty.
         /// </summary>
         [JsonProperty("inventory")]
         public IEnumerable<Inventory> Inventories { get; set; }

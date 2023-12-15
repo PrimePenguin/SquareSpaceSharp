@@ -1,5 +1,4 @@
-﻿using System;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
 using SquareSpaceSharp.Entities;
 using SquareSpaceSharp.Extensions;
@@ -49,7 +48,7 @@ namespace SquareSpaceSharp.Services.Inventory
         /// <param name="stockAdjustmentQuery">Requested Stock adjustment query parameters</param>
         public virtual async Task UpdateStockAdjustment(StockAdjustmentQuery stockAdjustmentQuery)
         {
-            var req = PrepareRequest($"inventory/adjustments");
+            var req = PrepareRequest("inventory/adjustments");
             HttpContent content = null;
 
             if (stockAdjustmentQuery != null)

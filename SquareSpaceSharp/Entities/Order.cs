@@ -25,6 +25,12 @@ namespace SquareSpaceSharp.Entities
         public string CreatedOn { get; set; }
 
         /// <summary>
+        /// Where the order originated; possible values are: `web` and `pos`.
+        /// </summary>
+        [JsonProperty("channel")]
+        public string Channel { get; set; }
+
+        /// <summary>
         /// The ISO 8601 date and time representation of when this order was last modified
         /// </summary>
         [JsonProperty("modifiedOn")]
@@ -131,5 +137,17 @@ namespace SquareSpaceSharp.Entities
         /// </summary>
         [JsonProperty("grandTotal")]
         public CurrencyValue GrandTotal { get; set; }
+
+        [JsonProperty("channelName")]
+        public string ChannelName { get; set; }
+
+        [JsonProperty("externalOrderReference")]
+        public string ExternalOrderReference { get; set; }
+
+        [JsonProperty("fulfilledOn")]
+        public DateTime FulfilledOn { get; set; }
+
+        [JsonProperty("priceTaxInterpretation")]
+        public string PriceTaxInterpretation { get; set; }
     }
 }

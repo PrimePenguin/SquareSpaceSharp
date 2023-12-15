@@ -17,7 +17,7 @@ namespace SquareSpaceSharp.Entities
         public CurrencyValue SalePrice { get; set; }
 
         /// <summary>
-        /// A flag indicating whether this product is on sale
+        /// Indicates whether the variant is sold according to its sale price.
         /// </summary>
         [JsonProperty("onSale")]
         public bool OnSale { get; set; }
