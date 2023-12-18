@@ -145,7 +145,7 @@ namespace SquareSpaceSharp.Entities
         public string ExternalOrderReference { get; set; }
 
         [JsonProperty("fulfilledOn")]
-        public DateTime FulfilledOn { get; set; }
+        public DateTime? FulfilledOn { get; set; }
 
         [JsonProperty("priceTaxInterpretation")]
         public string PriceTaxInterpretation { get; set; }
